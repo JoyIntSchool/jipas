@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rei311213-rgb.github.io/jipas-website/sitemap.xml
