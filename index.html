@@ -180,6 +180,7 @@
     background:#25D366; display:flex; align-items:center; justify-content:center;
     box-shadow:0 8px 22px rgba(0,0,0,0.25);
     transition:transform 0.2s ease;
+    border:0; cursor:pointer; padding:0;
   }
   .wa-float:hover{transform:scale(1.08);}
   .wa-float svg{width:30px; height:30px;}
@@ -192,6 +193,63 @@
     100%{transform:scale(1.7); opacity:0;}
   }
   .wa-link{color:#25D366 !important; display:inline-flex; align-items:center; gap:8px;}
+
+  .wa-menu{
+    position:fixed; bottom:92px; right:24px; z-index:61;
+    background:#fff; border-radius:14px; overflow:hidden;
+    box-shadow:0 14px 34px rgba(0,0,0,0.28);
+    width:250px; display:none; animation:fadeUp 0.25s ease both;
+  }
+  .wa-menu.open{display:block;}
+  .wa-menu-header{
+    background:#25D366; color:#fff; font-weight:700; font-size:13.5px;
+    padding:12px 16px;
+  }
+  .wa-menu a{
+    display:flex; align-items:center; gap:10px;
+    padding:13px 16px; font-size:14.4px; color:var(--ink); font-weight:600;
+    border-top:1px solid #EDEFF2;
+  }
+  .wa-menu a:hover{background:#F4FAF6;}
+  .wa-menu a svg{width:18px; height:18px; flex-shrink:0;}
+  .wa-menu-sub{display:block; font-size:11.5px; font-weight:500; color:#8A93A3;}
+
+  /* Announcements */
+  .announce-btn{
+    position:relative; background:none; border:1.5px solid rgba(255,255,255,0.35); color:#fff;
+    width:42px; height:42px; border-radius:10px; cursor:pointer; display:flex; align-items:center;
+    justify-content:center; margin-right:10px; flex-shrink:0;
+  }
+  .announce-btn:hover{background:rgba(255,255,255,0.1);}
+  .announce-btn svg{width:20px; height:20px;}
+  .announce-dot{
+    position:absolute; top:6px; right:7px; width:9px; height:9px; border-radius:50%;
+    background:var(--gold); border:2px solid var(--navy);
+  }
+  .announce-panel{
+    position:absolute; top:64px; right:24px; z-index:70;
+    background:#fff; border-radius:14px; width:320px; max-width:88vw;
+    box-shadow:0 18px 40px rgba(0,0,0,0.3); overflow:hidden;
+    display:none; animation:fadeUp 0.25s ease both;
+  }
+  .announce-panel.open{display:block;}
+  .announce-panel-header{
+    background:var(--navy-deep); color:#fff; font-weight:700; font-size:14.4px;
+    padding:14px 18px;
+  }
+  .announce-item{padding:14px 18px; border-top:1px solid #EDEFF2;}
+  .announce-item h5{font-size:14.4px; color:var(--navy); margin-bottom:4px;}
+  .announce-item p{font-size:12.9px; color:#5A6472; line-height:1.5;}
+  .announce-item .tag{
+    display:inline-block; font-size:10.5px; font-weight:700; text-transform:uppercase;
+    letter-spacing:0.03em; color:var(--terra); margin-bottom:4px;
+  }
+  @media (max-width:640px){
+    .announce-panel{right:16px; top:60px;}
+  }
+  @media (max-width:640px){
+    .wa-menu{bottom:82px; right:18px; width:230px;}
+  }
 
   .apply-float{
     position:fixed; bottom:24px; left:24px; z-index:60;
@@ -630,6 +688,28 @@
       <a href="#admissions">Admissions</a>
       <a href="#contact">Contact</a>
     </nav>
+    <button type="button" class="announce-btn" id="announce-btn" aria-label="View announcements" aria-haspopup="true">
+      <span class="announce-dot"></span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+    </button>
+    <div class="announce-panel" id="announce-panel">
+      <div class="announce-panel-header">📢 Latest Announcements</div>
+      <div class="announce-item">
+        <span class="tag">Admissions</span>
+        <h5>2026/2027 Admissions Open</h5>
+        <p>Now accepting applications for Nursery, Primary, JHS, and SHS.</p>
+      </div>
+      <div class="announce-item">
+        <span class="tag">Vacation Classes</span>
+        <h5>August 4 – September 1, 2026</h5>
+        <p>Vacation classes run for four weeks ahead of the new academic year.</p>
+      </div>
+      <div class="announce-item">
+        <span class="tag">Term Dates</span>
+        <h5>First Term Reopens September 8, 2026</h5>
+        <p>See the full School Calendar section for term dates, BECE, and holidays.</p>
+      </div>
+    </div>
     <button type="button" class="cta-btn" onclick="openApplyModal()" style="border:0; cursor:pointer;">Apply Now</button>
     <button class="menu-toggle" aria-label="Menu">☰</button>
   </div>
@@ -649,7 +729,7 @@
 </div>
 
 <div class="announce">
-  📢 Admissions open for the 2026–2027 Academic Year <span>|</span> Vacation Classes: August 1–31, 2026
+  📢 Admissions open for the 2026–2027 Academic Year <span>|</span> Vacation Classes: August 4 – September 1, 2026
 </div>
 
 <div class="kente"></div>
@@ -873,7 +953,7 @@
         <div class="eyebrow" style="color:#FDE9D8;">Admissions</div>
         <h2>Admission is open for 2026–2027</h2>
         <p>We are currently accepting applications across all levels — Nursery, Primary, JHS, and SHS.</p>
-        <div class="admit-detail"><b>Vacation Classes</b><span>August 1 – 31, 2026</span></div>
+        <div class="admit-detail"><b>Vacation Classes</b><span>August 4 – September 1, 2026</span></div>
         <div class="admit-detail"><b>How to Apply</b><span>Visit our main campus office in Lomé, or call the admissions line directly.</span></div>
         <div class="admit-actions">
           <button type="button" onclick="openApplyModal()" class="btn-solid" style="border:0; cursor:pointer;">Apply Online</button>
@@ -1081,6 +1161,34 @@
     document.getElementById('lightbox').classList.remove('open');
     document.getElementById('lightbox-img').src = '';
   }
+  var announceBtn = document.getElementById('announce-btn');
+  var announcePanel = document.getElementById('announce-panel');
+  if (announceBtn && announcePanel) {
+    announceBtn.addEventListener('click', function(e){
+      e.stopPropagation();
+      announcePanel.classList.toggle('open');
+    });
+    document.addEventListener('click', function(e){
+      if (announcePanel.classList.contains('open') && !announcePanel.contains(e.target) && e.target !== announceBtn){
+        announcePanel.classList.remove('open');
+      }
+    });
+  }
+
+  var waFloatBtn = document.getElementById('wa-float-btn');
+  var waMenu = document.getElementById('wa-menu');
+  if (waFloatBtn && waMenu) {
+    waFloatBtn.addEventListener('click', function(e){
+      e.stopPropagation();
+      waMenu.classList.toggle('open');
+    });
+    document.addEventListener('click', function(e){
+      if (waMenu.classList.contains('open') && !waMenu.contains(e.target) && e.target !== waFloatBtn){
+        waMenu.classList.remove('open');
+      }
+    });
+  }
+
   var menuToggleBtn = document.querySelector('.menu-toggle');
   var navLinks = document.querySelector('nav.links');
   menuToggleBtn.addEventListener('click', function(e){
@@ -1097,8 +1205,8 @@
   });
 
   var calEvents = [
-    { date: '2026-08-01', title: 'Vacation Classes Begin', type: 'activity' },
-    { date: '2026-08-31', title: 'Vacation Classes End', type: 'activity' },
+    { date: '2026-08-04', title: 'Vacation Classes Begin', type: 'activity' },
+    { date: '2026-09-01', title: 'Vacation Classes End', type: 'activity' },
     { date: '2026-09-08', title: 'First Term Reopens', type: 'activity' },
     { date: '2026-09-19', title: 'Annual Science &amp; Innovation Fair', type: 'activity' },
     { date: '2026-09-27', title: 'Inter-School Sports Day', type: 'activity' },
@@ -1355,10 +1463,22 @@
   <span>APPLY<br>NOW</span>
 </button>
 
-<a class="wa-float" href="https://wa.me/22899473823?text=Hello%20JIPAS%2C%20I%27d%20like%20to%20ask%20about%20admissions." target="_blank" rel="noopener" aria-label="Chat with JIPAS on WhatsApp">
+<div class="wa-menu" id="wa-menu">
+  <div class="wa-menu-header">Chat with JIPAS on WhatsApp</div>
+  <a href="https://wa.me/22899473823?text=Hello%20JIPAS%2C%20I%27d%20like%20to%20ask%20about%20admissions." target="_blank" rel="noopener">
+    <svg viewBox="0 0 32 32" fill="#25D366"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.4.7 4.6 1.9 6.5L4 29l7.7-1.8c1.8 1 3.9 1.5 6.1 1.5h.1c6.6 0 12-5.4 12-12S22.5 3 16 3z"/></svg>
+    <span>+228 99 47 38 23<span class="wa-menu-sub">Admissions</span></span>
+  </a>
+  <a href="https://wa.me/22890836048?text=Hello%20JIPAS%2C%20I%27d%20like%20to%20ask%20about%20admissions." target="_blank" rel="noopener">
+    <svg viewBox="0 0 32 32" fill="#25D366"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.4.7 4.6 1.9 6.5L4 29l7.7-1.8c1.8 1 3.9 1.5 6.1 1.5h.1c6.6 0 12-5.4 12-12S22.5 3 16 3z"/></svg>
+    <span>+228 90 83 60 48<span class="wa-menu-sub">General Office</span></span>
+  </a>
+</div>
+
+<button type="button" class="wa-float" id="wa-float-btn" aria-label="Chat with JIPAS on WhatsApp" aria-haspopup="true">
   <span class="wa-float-pulse"></span>
   <svg viewBox="0 0 32 32" fill="#fff"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.4.7 4.6 1.9 6.5L4 29l7.7-1.8c1.8 1 3.9 1.5 6.1 1.5h.1c6.6 0 12-5.4 12-12S22.5 3 16 3zm0 22h-.1c-2 0-4-.5-5.7-1.5l-.4-.2-4.6 1.1 1.2-4.5-.3-.4C4.7 17.8 4.1 15.9 4.1 14 4.1 8.6 8.6 4 16 4c3.5 0 6.7 1.4 9.1 3.8 2.4 2.4 3.8 5.6 3.8 9.1 0 5.4-4.6 9.9-10 9.9zm5.9-7.4c-.3-.2-1.9-1-2.2-1s-.5-.1-.7.2c-.2.3-.8 1-1 1.2-.2.2-.4.2-.6.1-.3-.1-1.2-.5-2.3-1.5-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.4.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.5-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.2 4.9 4.4.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.6-.6 1.8-1.3.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3z"/></svg>
-</a>
+</button>
 
 </body>
 </html>
